@@ -1,0 +1,73 @@
+.Landing {
+    width:100vw;
+    height:100vh;    
+   
+    position: relative;
+    z-index:0
+}
+
+.LandingContent{
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.7);
+    z-index:1;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    flex-direction: column;
+}
+
+.LandingContent h1{
+    font-size: 4rem;
+    letter-spacing: 1.5px
+}
+
+.LandingContent h1 em{
+    font-family: 'lato';
+    font-size: 4.6rem;
+}
+
+.LandingSubHeading{
+    font-family: 'Lora';
+    font-size: 1.2rem;
+    letter-spacing: 1.5px
+}
+
+.LandingForm{
+    margin-top: 30px;
+    height: 30px;
+    display:flex;
+    align-items: center
+}
+
+.LandingForm input{
+    height: 30px;
+    width :200px;
+    margin: 0 10px;
+    padding: 0 20px;
+    border-radius: 10px;
+    outline: none;
+    border: none
+}
+
+.LandingForm button{
+    height: 30px;
+    width:150px;
+    background: transparent;
+    border: 2px solid #f8f8f8;
+    border-radius: 10px;
+    color: #f8f8f8;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1.5px
+
+}
+
+.LandingContent button:hover{
+    background: #f8f8f8;
+    color: #333;
+    
+    transition: all 0.2s ease-in-out
+}
+
