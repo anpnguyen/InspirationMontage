@@ -1,39 +1,56 @@
-import React , {useState}from 'react'
-import './PhotoStage.css'
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import "./PhotoStage.css";
+import axios from "axios";
 // import PropTypes from 'prop-types'
 
 function PhotoStage(props) {
 
-    const [searchState, setSearch] = useState({searchParams:"", images:[""], loading:true})
+  const {match} = props  
+  const [searchState, setSearchState] = useState({
+    page: 1,
+    totalPages: undefined,
+    images: [],
+    loading: true
+  });
 
-    const {searchParams, images, loading} = searchState
-
-    const [formData, setFormData] = useState({search: ""})
-
-    const {search} = formData
+  const { page, images, loading, totalPages } = searchState;
   
+
    
+  
+  useEffect( ()=>{
 
+    const getImages = async () =>{
+        const response = await axios.get(`/api/photos?page=${page}&query=${match.params.searchParams}`)
+        // console.log(response.data)
+        console.log(response.data)
+        console.log(response.data.results)
 
-
-
-
-
-
-    return (
-        <div className='PhotoStage'>
-            <img src="https://source.unsplash.com/1600x900/?nature" alt=""/>
-            <img src="https://source.unsplash.com/1500x800/?nature" alt=""/>
-            <img src="https://source.unsplash.com/1400x700/?nature" alt=""/>
-           
-
+        setSearchState({ totalPages: response.data.total_pages, images: response.data.results})
         
-            
-        </div>
-    )
+        
+    }
+
+    getImages()
+    
+    
+  },[])
+
+  const mappedData = images.map(image=> {
+      return(
+          <p>{image.height}</p>
+      )
+  })
+
+  return (
+    <div className="PhotoStage">
+      <h1>this </h1>
+      {totalPages}
+      <p>
+          {mappedData}
+      </p>
+    </div>
+  );
 }
 
-
-export default PhotoStage
-
+export default PhotoStage;

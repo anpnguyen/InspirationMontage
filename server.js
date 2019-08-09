@@ -17,13 +17,15 @@ app.get("/api/photos", async (req, res) => {
   };
 
   try {
-    const res = await axios.get(
+    const response = await axios.get(
       `https://api.unsplash.com/search/photos`,
       params
     );
-    console.log(res);
+    console.log(response.data)
+    res.send(response.data)
+    
   } catch (err) {
-    console.log(err);
+    res.status(500).send("Server Error");
   }
 });
 

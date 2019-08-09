@@ -4,7 +4,9 @@ import background from "./images/Background.jpg";
 import axios from 'axios'
 // import PropTypes from 'prop-types'
 
-const Landing =  () => {
+const Landing =  (props) => {
+
+  const {history} = props
   const style = {
     backgroundImage: `url(${background})`,
     width: "100%",
@@ -22,7 +24,7 @@ const Landing =  () => {
 
   const handleSubmit= (e)=>{
       e.preventDefault()
-      alert('yay')
+      history.push(`/photos/${search}`)
   }
 
   return (

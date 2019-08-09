@@ -20,7 +20,7 @@ function App() {
 
           <Route
             exact
-            path="/photo"
+            path="/photos/:searchParams"
             render={routeProps => <PhotoStage {...routeProps} />}
           />
         </Switch>
