@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lora|Oswald:700&display=swap');
 
-html, body {
+html, body, .App, #root {
     height:100%;
     width:100%;
     margin:0;

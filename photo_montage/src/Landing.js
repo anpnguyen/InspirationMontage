@@ -4,7 +4,7 @@ import background from "./images/Background.jpg";
 import axios from 'axios'
 // import PropTypes from 'prop-types'
 
-function Landing() {
+const Landing =  () => {
   const style = {
     backgroundImage: `url(${background})`,
     width: "100%",

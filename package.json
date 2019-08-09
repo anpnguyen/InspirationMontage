@@ -1,0 +1,21 @@
+{
+  "name": "i_need_inspiration",
+  "version": "1.0.0",
+  "description": "An app that will make request to the unsplashed API and show you images based on your search",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "motivation",
+    "unsplashed"
+  ],
+  "author": "An Nguyen",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1"
+  }
+}
