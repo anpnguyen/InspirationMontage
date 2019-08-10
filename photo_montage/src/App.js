@@ -3,7 +3,6 @@ import React from "react";
 import Landing from "./Landing";
 import PhotoStage from "./PhotoStage";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import dotenv from 'dotenv'
 import "./App.css";
 
 function App() {

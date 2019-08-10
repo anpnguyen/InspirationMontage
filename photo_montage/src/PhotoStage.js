@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./PhotoStage.css";
 import axios from "axios";
+import IndividualImage from "./IndividualImage";
+import InfiniteScroll from "react-infinite-scroll-component";
+import uuid from "uuid/v4";
 // import PropTypes from 'prop-types'
 
 function PhotoStage(props) {
-
-  const {match} = props  
+  const { match } = props;
   const [searchState, setSearchState] = useState({
     page: 1,
     totalPages: undefined,
@@ -13,43 +15,62 @@ function PhotoStage(props) {
     loading: true
   });
 
-  const { page, images, loading, totalPages } = searchState;
-  
+  const { page, images, loading } = searchState;
 
-   
-  
-  useEffect( ()=>{
+  useEffect(() => {
+    const getImages = async () => {
+      const response = await axios.get(
+        `/api/photos?page=${page}&query=${match.params.searchParams}`
+      );
 
-    const getImages = async () =>{
-        const response = await axios.get(`/api/photos?page=${page}&query=${match.params.searchParams}`)
-        // console.log(response.data)
-        console.log(response.data)
-        console.log(response.data.results)
+      setSearchState({
+        ...searchState,
+        totalPages: response.data.total_pages,
+        images: response.data.results,
+        loading: false
+      });
+    };
 
-        setSearchState({ totalPages: response.data.total_pages, images: response.data.results})
-        
-        
-    }
+    getImages();
+  }, []);
 
-    getImages()
+  const updatePage = () => {
+    setSearchState({ ...searchState, page: page + 1, loading: false });
+  };
+
+  useEffect(() => {
     
+    const getNewImages = async () => {
+      console.log('calling from inside async')
+      const newResponse = await axios.get(
+        `/api/photos?page=${page}&query=${match.params.searchParams}`
+      );
+      setSearchState({
+        ...searchState,
+        images: images.concat(newResponse.data.results)
+      });
+    };
+
+    images.length > 0 && getNewImages();
+    console.log(searchState.images)
+  }, [page]);
+
+  const mappedData = images.map(image => {
     
-  },[])
+    return <IndividualImage image={image} key={uuid()} />;
+  });
 
-  const mappedData = images.map(image=> {
-      return(
-          <p>{image.height}</p>
-      )
-  })
-
-  return (
-    <div className="PhotoStage">
-      <h1>this </h1>
-      {totalPages}
-      <p>
-          {mappedData}
-      </p>
-    </div>
+  return loading ? (
+    <h1>Loading</h1>
+  ) : (
+    <InfiniteScroll
+      dataLength={images.length} //This is important field to render the next data
+      next={updatePage}
+      hasMore={true}
+      loader={<h4>Loading...</h4>}
+    >
+      <div className="PhotoStage">{mappedData}</div>
+    </InfiniteScroll>
   );
 }
 

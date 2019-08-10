@@ -1,7 +1,6 @@
 import React , {useState}from "react";
 import "./Landing.css";
 import background from "./images/Background.jpg";
-import axios from 'axios'
 // import PropTypes from 'prop-types'
 
 const Landing =  (props) => {
