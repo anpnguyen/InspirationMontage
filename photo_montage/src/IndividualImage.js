@@ -6,7 +6,7 @@ function IndividualImage(props) {
   return (
     <Fragment>
       <div className="IndividualImage">
-        <img src={image.urls.small} alt={image.description} onLoad={()=>console.log('loaded')}/>
+        <img src={image.urls.small} alt={image.description} />
       </div>
     </Fragment>
   );

@@ -1,11 +1,9 @@
-import React , {useState}from "react";
+import React, { useState } from "react";
 import "./Landing.css";
 import background from "./images/Background.jpg";
 
-
-const Landing =  (props) => {
-
-  const {history} = props
+const Landing = props => {
+  const { history } = props;
   const style = {
     backgroundImage: `url(${background})`,
     width: "100%",
@@ -13,41 +11,47 @@ const Landing =  (props) => {
     backgroundSize: "cover"
   };
 
-  const [formData, setFormData] = useState({search: ""})
+  const [formData, setFormData] = useState({ search: "" });
 
-  const {search} = formData
+  const { search } = formData;
 
-  const handleChange = (e)=>{
-      setFormData({ ...formData, [e.target.name]: e.target.value})
-  }
+  const handleChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const handleSubmit= (e)=>{
-      e.preventDefault()
-      search && history.push(`/photos/${search}`)
-  }
+  const handleSubmit = e => {
+    e.preventDefault();
+    search && history.push(`/photos/${search}`);
+  };
 
   return (
     <div className="Landing" style={style}>
       <div className="LandingContent">
         <div className="">
-        <h1>I need some <em>inspiration</em></h1>
+          <h1>
+            I need some <em>inspiration</em>
+          </h1>
         </div>
         <div className="LandingSubHeading">
-        <h3>What would you like to see today?</h3>
+          <h3>What would you like to see today?</h3>
         </div>
-        
-        <form onSubmit={handleSubmit}>
-            <div className='LandingForm'>
-                <input type="text" placeholder='Search ....' value={search} name='search' onChange={handleChange}/>
-                <button>Inspire me!</button>
-                
-            </div>
 
+        <form onSubmit={handleSubmit}>
+          <div className="LandingForm">
+            <input
+              type="text"
+              placeholder="Search ...."
+              value={search}
+              name="search"
+              onChange={handleChange}
+            />
+            <button>Inspire me!</button>
+          </div>
         </form>
       </div>
     </div>
   );
-}
+};
 
 // Landing.propTypes = {
 
