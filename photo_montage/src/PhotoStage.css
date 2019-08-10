@@ -1,31 +1,13 @@
-.PhotoStage {
-  line-height: 0;
-  -webkit-column-count: 3;
-  -webkit-column-gap: 0px;
-  -moz-column-count: 3;
-  -moz-column-gap: 0px;
-  column-count: 3;
-  column-gap: 0px;
-}
 
-.PhotoStage img {
+
+img {
   width: 100% !important;
   height: auto !important;
+  
 }
 
 .IndividualImage{
-    position: relative;
-}
-
-.IndividualImage p{
-    position:absolute;
-    left:0;
-    right:0;
-    top:0px;
-    color:white;
-    font-size: 10px;
-    height:100%;
     margin:0;
-    padding-top: 30px;
-
+    line-height: 0
 }
+
