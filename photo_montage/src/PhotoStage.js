@@ -8,8 +8,8 @@ import Masonry from "./Masonry";
 import Spinner from "./Spinner";
 
 function PhotoStage(props) {
-  const { match } = props;
-  const [loadedCounter, setLoadedCounter] = useState(0);
+  const { match, history , errorMessage} = props;
+  
   const [searchState, setSearchState] = useState({
     page: 1,
     totalPages: undefined,
@@ -28,12 +28,26 @@ function PhotoStage(props) {
       setSearchState({
         ...searchState,
         totalPages: response.data.total_pages,
-        images: response.data.results
-        // loading: false
+        images: response.data.results,
+        loading: false
       });
+      if(response.data.total === 0){
+        errorMessage(`No images were found for ${match.params.searchParams}, please search again`)
+        history.push('/')
+      } 
+
     };
 
+    
     getImages();
+    
+
+    
+      
+      
+    
+
+    
   }, []);
 
   const updatePage = () => {
@@ -58,6 +72,11 @@ function PhotoStage(props) {
     return <IndividualImage image={image} key={uuid()} />;
   });
 
+  if(images.length> 0 && images.length <10){
+    errorMessage(`No images were found for ${match.params.searchParams}, please search again`)
+    history.goBack()
+  }
+
   return loading ? (
     <Spinner />
   ) : (
@@ -65,7 +84,7 @@ function PhotoStage(props) {
       dataLength={images.length}
       next={updatePage}
       hasMore={true}
-      loader={<h4>Loading...</h4>}
+      loader={<h4>Loading...from infinite scroll</h4>}
     >
       <Masonry columns={3} gap={0}>
         {mappedData}

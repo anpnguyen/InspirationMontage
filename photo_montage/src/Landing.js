@@ -1,7 +1,7 @@
 import React , {useState}from "react";
 import "./Landing.css";
 import background from "./images/Background.jpg";
-// import PropTypes from 'prop-types'
+
 
 const Landing =  (props) => {
 
@@ -23,7 +23,7 @@ const Landing =  (props) => {
 
   const handleSubmit= (e)=>{
       e.preventDefault()
-      history.push(`/photos/${search}`)
+      search && history.push(`/photos/${search}`)
   }
 
   return (
@@ -40,7 +40,7 @@ const Landing =  (props) => {
             <div className='LandingForm'>
                 <input type="text" placeholder='Search ....' value={search} name='search' onChange={handleChange}/>
                 <button>Inspire me!</button>
-                {search}
+                
             </div>
 
         </form>

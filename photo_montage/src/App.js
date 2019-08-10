@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, {useState} from "react";
 import Landing from "./Landing";
 import PhotoStage from "./PhotoStage";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -7,8 +7,21 @@ import "./App.css";
 
 function App() {
 
+  const [error, setError] = useState("")
+  const errorMessage = (msg)=>{
+    setError(msg)
+    setTimeout(()=>setError(""),3000)
+
+  }
+
   return (
     <div className="App">
+      
+      
+      <div className={`alert ${error && 'active'}`}>
+          <h2>{error}</h2>
+      </div>
+      
       <BrowserRouter>
         <Switch>
           <Route
@@ -20,7 +33,7 @@ function App() {
           <Route
             exact
             path="/photos/:searchParams"
-            render={routeProps => <PhotoStage {...routeProps} />}
+            render={routeProps => <PhotoStage {...routeProps} errorMessage={errorMessage}/>}
           />
         </Switch>
       </BrowserRouter>
