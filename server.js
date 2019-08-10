@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const app = express();
+const path = require("path");
 
 app.get("/api/photos", async (req, res) => {
   const params = {
@@ -25,6 +26,16 @@ app.get("/api/photos", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("photo_montage/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname, "photo_montage", "build", "index.html")
+    );
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 
