@@ -17,6 +17,8 @@ function PhotoStage(props) {
     loading: true
   });
 
+  const [colNumber, setColNumber] = useState(3);
+
   const { page, images, loading, totalPages } = searchState;
 
   useEffect(() => {
@@ -56,8 +58,8 @@ function PhotoStage(props) {
       setSearchState({
         ...searchState,
         images: images.concat(newResponse.data.results)
-      })
-      console.log('calling');
+      });
+      console.log("calling");
     };
 
     images.length > 0 && page < totalPages && getNewImages();
@@ -76,6 +78,22 @@ function PhotoStage(props) {
     history.goBack();
   }
 
+  useEffect(() => {
+    const colResize = () => {
+      if (document.documentElement.clientWidth < 698) {
+        setColNumber(2);
+      }
+      if (document.documentElement.clientWidth <= 480) {
+        setColNumber(1);
+      }
+      if (document.documentElement.clientWidth >= 698) {
+        setColNumber(3);
+      }
+    };
+    colResize();
+    window.addEventListener("resize", colResize);
+  }, []);
+
   return loading ? (
     <Spinner />
   ) : (
@@ -85,7 +103,7 @@ function PhotoStage(props) {
       hasMore={true}
       loader={<h4>Loading...</h4>}
     >
-      <Masonry columns={3} gap={0}>
+      <Masonry columns={colNumber} gap={0}>
         {mappedData}
       </Masonry>
     </InfiniteScroll>
