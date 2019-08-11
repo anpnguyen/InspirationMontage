@@ -1,13 +1,13 @@
 .Landing {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
   z-index: 0;
 }
 
 .LandingContent {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.7);
   z-index: 1;
   display: flex;
@@ -82,16 +82,17 @@
 
 .alert {
   position: absolute;
-  top: 100px;
-  /* left: 50%; */
-  /* margin-left: -350px; */
+  top: 100px;  
   z-index: 2;
   width: 90%;
+  margin:0 5%;
   background: rgba(53, 53, 53, 0.5);
   color: #f8f8f8;
   padding: 1rem;
   border-radius: 10px;
   opacity: 0;
+  box-sizing: border-box;
+  font-family: "Lora";
 }
 
 .alert.active {
@@ -99,8 +100,9 @@
   transition: 0.2s opacity ease-in-out;
 }
 
-.alert h2 {
-  letter-spacing: 2px;
+.alert p {
+  letter-spacing: 1.5px;
+  font-size:1rem
 }
 
 @media only screen and (max-width: 768px) {

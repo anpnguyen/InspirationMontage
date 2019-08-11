@@ -8,13 +8,13 @@ function App() {
   const [error, setError] = useState("");
   const errorMessage = msg => {
     setError(msg);
-    setTimeout(() => setError(""), 3000);
+    // setTimeout(() => setError(""), 3000);
   };
 
   return (
     <div className="App">
       <div className={`alert ${error && "active"}`}>
-        <h2>{error}</h2>
+        <p>{error}</p>
       </div>
 
       <BrowserRouter>

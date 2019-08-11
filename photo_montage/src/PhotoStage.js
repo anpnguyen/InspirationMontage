@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import "./PhotoStage.css";
 import axios from "axios";
+import {Link} from 'react-router-dom'
 import IndividualImage from "./IndividualImage";
 import InfiniteScroll from "react-infinite-scroll-component";
 import uuid from "uuid/v4";
@@ -37,7 +38,7 @@ function PhotoStage(props) {
         errorMessage(
           `No images were found for ${
             match.params.searchParams
-          }, please search again`
+          }`
         );
         history.push("/");
       }
@@ -73,7 +74,7 @@ function PhotoStage(props) {
     errorMessage(
       `No images were found for ${
         match.params.searchParams
-      }, please search again`
+      }`
     );
     history.goBack();
   }
@@ -97,6 +98,12 @@ function PhotoStage(props) {
   return loading ? (
     <Spinner />
   ) : (
+    <Fragment>
+      <div className="goBack">
+        <div className="goBackButtons">
+          <Link exact to='/'>Back</Link>  
+        </div>
+      </div>
     <InfiniteScroll
       dataLength={images.length}
       next={updatePage}
@@ -107,6 +114,7 @@ function PhotoStage(props) {
         {mappedData}
       </Masonry>
     </InfiniteScroll>
+    </Fragment>
   );
 }
 
