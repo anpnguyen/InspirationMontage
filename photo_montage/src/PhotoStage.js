@@ -67,7 +67,7 @@ function PhotoStage(props) {
 
   if (images.length > 0 && images.length < 10) {
     errorMessage(`No images were found for ${match.params.searchParams}`);
-    history.goBack();
+    history.push('/');
   }
 
   useEffect(() => {
@@ -89,6 +89,7 @@ function PhotoStage(props) {
   return loading ? (
     <Spinner />
   ) : (
+    
     <Fragment>
       <div className="goBack">
         <div className="goBackButtons">

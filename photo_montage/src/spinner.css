@@ -3,7 +3,7 @@
     position: relative;
     width: 64px;
     height: 64px;
-    margin-top:50%
+    margin-top:40vh
   }
   .lds-roller div {
     animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
