@@ -51,8 +51,4 @@ const Landing = props => {
   );
 };
 
-// Landing.propTypes = {
-
-// }
-
 export default Landing;

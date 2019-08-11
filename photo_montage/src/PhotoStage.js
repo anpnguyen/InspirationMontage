@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import "./PhotoStage.css";
 import axios from "axios";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import IndividualImage from "./IndividualImage";
 import InfiniteScroll from "react-infinite-scroll-component";
 import uuid from "uuid/v4";
@@ -35,11 +35,7 @@ function PhotoStage(props) {
         loading: false
       });
       if (response.data.total === 0) {
-        errorMessage(
-          `No images were found for ${
-            match.params.searchParams
-          }`
-        );
+        errorMessage(`No images were found for ${match.params.searchParams}`);
         history.push("/");
       }
     };
@@ -60,7 +56,6 @@ function PhotoStage(props) {
         ...searchState,
         images: images.concat(newResponse.data.results)
       });
-      console.log("calling");
     };
 
     images.length > 0 && page < totalPages && getNewImages();
@@ -71,11 +66,7 @@ function PhotoStage(props) {
   });
 
   if (images.length > 0 && images.length < 10) {
-    errorMessage(
-      `No images were found for ${
-        match.params.searchParams
-      }`
-    );
+    errorMessage(`No images were found for ${match.params.searchParams}`);
     history.goBack();
   }
 
@@ -101,19 +92,21 @@ function PhotoStage(props) {
     <Fragment>
       <div className="goBack">
         <div className="goBackButtons">
-          <Link exact to='/'>Back</Link>  
+          <Link exact to="/">
+            Back
+          </Link>
         </div>
       </div>
-    <InfiniteScroll
-      dataLength={images.length}
-      next={updatePage}
-      hasMore={true}
-      loader={<h4>Loading...</h4>}
-    >
-      <Masonry columns={colNumber} gap={0}>
-        {mappedData}
-      </Masonry>
-    </InfiniteScroll>
+      <InfiniteScroll
+        dataLength={images.length}
+        next={updatePage}
+        hasMore={true}
+        loader={<h4>Loading...</h4>}
+      >
+        <Masonry columns={colNumber} gap={0}>
+          {mappedData}
+        </Masonry>
+      </InfiniteScroll>
     </Fragment>
   );
 }

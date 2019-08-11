@@ -8,7 +8,7 @@ function App() {
   const [error, setError] = useState("");
   const errorMessage = msg => {
     setError(msg);
-    // setTimeout(() => setError(""), 3000);
+    setTimeout(() => setError(""), 3000);
   };
 
   return (

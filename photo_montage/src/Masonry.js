@@ -44,7 +44,7 @@ function Masonry(props) {
     );
   }
 
-  return <div style={{ display: "flex"}}>{fullColumns}</div>;
+  return <div style={{ display: "flex" }}>{fullColumns}</div>;
 }
 
 export default Masonry;
