@@ -56,7 +56,8 @@ function PhotoStage(props) {
       setSearchState({
         ...searchState,
         images: images.concat(newResponse.data.results)
-      });
+      })
+      console.log('calling');
     };
 
     images.length > 0 && page < totalPages && getNewImages();

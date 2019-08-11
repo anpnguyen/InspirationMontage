@@ -6,7 +6,6 @@ const Landing = props => {
   const { history } = props;
   const style = {
     backgroundImage: `url(${background})`,
-    width: "100%",
     backgroundPosition: "center",
     backgroundSize: "cover"
   };
@@ -35,9 +34,8 @@ const Landing = props => {
         <div className="LandingSubHeading">
           <h3>What would you like to see today?</h3>
         </div>
-
-        <form onSubmit={handleSubmit}>
-          <div className="LandingForm">
+        <div className="LandingForm">
+          <form onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Search ...."
@@ -46,8 +44,8 @@ const Landing = props => {
               onChange={handleChange}
             />
             <button>Inspire me!</button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

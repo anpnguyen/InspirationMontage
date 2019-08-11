@@ -1,7 +1,6 @@
 .Landing {
-  width: 100vw;
-  height: 100vh;
-
+  width: 100%;
+  height: 100%;
   position: relative;
   z-index: 0;
 }
@@ -16,11 +15,14 @@
   justify-content: center;
   color: white;
   flex-direction: column;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .LandingContent h1 {
   font-size: 4rem;
   letter-spacing: 1.5px;
+  margin: 2rem 0;
 }
 
 .LandingContent h1 em {
@@ -28,21 +30,24 @@
   font-size: 4.6rem;
 }
 
-.LandingSubHeading {
+.LandingSubHeading h3 {
+  margin: 2rem 0;
   font-family: "Lora";
   font-size: 1.2rem;
   letter-spacing: 1.5px;
 }
 
 .LandingForm {
-  margin-top: 30px;
-  height: 30px;
   display: flex;
   align-items: center;
 }
 
+.LandingForm form {
+  margin: 2rem;
+}
+
 .LandingForm input {
-  height: 30px;
+  min-height: 30px;
   width: 200px;
   margin: 0 10px;
   padding: 0 20px;
@@ -52,7 +57,7 @@
 }
 
 .LandingForm button {
-  height: 30px;
+  min-height: 30px;
   width: 150px;
   background: transparent;
   border: 2px solid #f8f8f8;
@@ -78,10 +83,10 @@
 .alert {
   position: absolute;
   top: 100px;
-  left: 50%;
-  margin-left: -350px;
+  /* left: 50%; */
+  /* margin-left: -350px; */
   z-index: 2;
-  width: 700px;
+  width: 90%;
   background: rgba(53, 53, 53, 0.5);
   color: #f8f8f8;
   padding: 1rem;
@@ -96,4 +101,38 @@
 
 .alert h2 {
   letter-spacing: 2px;
+}
+
+@media only screen and (max-width: 768px) {
+  .LandingContent h1 {
+    font-size: 3rem;
+    letter-spacing: 1.5px;
+  }
+
+  .LandingContent h1 em {
+    font-family: "lato";
+    font-size: 3.6rem;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .LandingForm {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .LandingForm button {
+    margin-top: 15px;
+    width: 240px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .LandingSubHeading h3 {
+    font-family: "Lora";
+    font-size: 1rem;
+  }
+  .LandingContent {
+    padding: 1rem;
+  }
 }
