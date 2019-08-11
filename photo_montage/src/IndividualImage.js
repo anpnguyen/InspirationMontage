@@ -8,7 +8,7 @@ function IndividualImage(props) {
   return (
     <Fragment>
       <div className="IndividualImage" >
-        <img src={image.urls.small} alt={image.description} />
+        <img src={image.urls.small} alt={image.description} draggable="false" />
       </div>
     </Fragment>
   );

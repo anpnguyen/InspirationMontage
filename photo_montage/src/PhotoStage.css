@@ -1,45 +1,54 @@
-
-
 img {
   width: 100% !important;
   height: auto !important;
-  
 }
 
-.IndividualImage{
-    margin:0;
-    line-height: 0;
-    
+.IndividualImage {
+  margin: 0;
+  line-height: 0;
+  
+  user-select: none;
+  -moz-user-select: none;
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
 }
 
-.goBack{
-  position:sticky;
-  top:0;
-  
-  width:100%;
-  z-index:5;
+.goBack {
+  position: sticky;
+  top: 0;
+
+  width: 100%;
+  z-index: 5;
   min-height: 60px;
-  background:transparent
+  background: transparent;
 }
 
-.goBackButtons{
+.goBackButtons {
   margin-left: auto;
-  height:60px;
-  width:60px;
-  background: rgba(0,0,0,0.2);
-  display:flex;
+  height: 60px;
+  width: 60px;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
   align-items: center;
   justify-content: center;
-  
-
 }
 
-.goBackButtons a{
-  color:#f8f8f8; 
-  text-decoration: none
-
+.goBackButtons a {
+  color: #f8f8f8;
+  text-decoration: none;
 }
 
 .infinite-scroll-component {
-  margin-top: -60px
+  margin-top: -60px;
+  overflow: visible !important;
+}
+
+.hasMore {
+  position: absolute;
+  bottom: 0;
+
+  widows: 100%;
+  text-align: center;
 }

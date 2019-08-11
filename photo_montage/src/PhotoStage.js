@@ -19,6 +19,7 @@ function PhotoStage(props) {
   });
 
   const [colNumber, setColNumber] = useState(3);
+  const [hasMore, setHasMore] = useState(true);
 
   const { page, images, loading, totalPages } = searchState;
 
@@ -48,6 +49,8 @@ function PhotoStage(props) {
   };
 
   useEffect(() => {
+    console.log(searchState);
+    console.log(hasMore);
     const getNewImages = async () => {
       const newResponse = await axios.get(
         `/api/photos?page=${page}&query=${match.params.searchParams}`
@@ -61,13 +64,19 @@ function PhotoStage(props) {
     images.length > 0 && page < totalPages && getNewImages();
   }, [page]);
 
+  useEffect(() => {
+    if (page === totalPages) {
+      setHasMore(false);
+    }
+  }, [page]);
+
   const mappedData = images.map(image => {
     return <IndividualImage image={image} key={uuid()} />;
   });
 
   if (images.length > 0 && images.length < 10) {
     errorMessage(`No images were found for ${match.params.searchParams}`);
-    history.push('/');
+    history.push("/");
   }
 
   useEffect(() => {
@@ -89,7 +98,6 @@ function PhotoStage(props) {
   return loading ? (
     <Spinner />
   ) : (
-    
     <Fragment>
       <div className="goBack">
         <div className="goBackButtons">
@@ -101,7 +109,7 @@ function PhotoStage(props) {
       <InfiniteScroll
         dataLength={images.length}
         next={updatePage}
-        hasMore={true}
+        hasMore={hasMore}
         loader={<h4>Loading...</h4>}
       >
         <Masonry columns={colNumber} gap={0}>
