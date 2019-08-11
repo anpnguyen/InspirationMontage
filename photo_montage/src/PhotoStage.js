@@ -49,8 +49,6 @@ function PhotoStage(props) {
   };
 
   useEffect(() => {
-    console.log(searchState);
-    console.log(hasMore);
     const getNewImages = async () => {
       const newResponse = await axios.get(
         `/api/photos?page=${page}&query=${match.params.searchParams}`
@@ -101,7 +99,7 @@ function PhotoStage(props) {
     <Fragment>
       <div className="goBack">
         <div className="goBackButtons">
-          <Link exact to="/">
+          <Link exact="true" to="/">
             Back
           </Link>
         </div>
